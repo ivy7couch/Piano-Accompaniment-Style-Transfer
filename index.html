@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Accompaniment Style Transfer</title>
+    <style>
+        body {
+            /* font-family: Arial, sans-serif; */
+            font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+            display: flex; /* 使頁面內容撐滿螢幕 */
+            flex-direction: column; /* 垂直排列所有行 */
+        }
+
+        :root {
+            --canvas-padding-left: 30px;
+        }
+    
+        .header-container {
+            background-color: #f0f0f0; /* 設置整個區塊的淺灰色背景 */
+            padding: 45px; /* 增加內邊距，讓標題與容器邊緣留空 */
+            text-align: center; /* 標題對齊方式 */
+            margin-bottom: 20px; /* 與下面內容的間距 */
+            width: 100%; /* 確保區塊填滿整個寬度 */
+            box-sizing: border-box; /*確保內邊距包含在寬度中*/
+            /* border-bottom: 2px solid #ccc; 添加底部分隔線 */
+        }
+        h1 {
+            font-family: 'Merriweather';
+            text-align: center; /* 標題居中 */
+            font-size: 32px; /* 增大字體使其更顯眼 */
+            /* font-weight: bold; 加粗字體 */
+            color: #4a4949; /* 使用深色以突出標題 */
+            margin: 0;
+            /* margin-top: 80px; 與頁面頂部距離 */
+            /* margin-bottom: 60px; 與其他內容距離 */
+        }
+        h2 {
+            font-family: "Times New Roman", Times, serif; 
+            margin-left: var(--canvas-padding-left);
+            font-size: 25px;
+        }
+        h3 {
+            font-family: "Times New Roman", Times, serif; 
+            margin-left: var(--canvas-padding-left);
+            font-size: 20px;
+        }
+        p {
+            display: inline-block; /* 背景框大小根據文字長度自動調整 */
+            background-color: rgba(103, 163, 199, 0.3); /* 半透明灰色背景 */
+            padding: 15px; /* 內邊距，讓文字和框框保持距離 */
+            border-radius: 10px; /* 圓弧角落，數值可調整弧度大小 */
+            box-sizing: border-box; /* 確保內邊距包含在元素寬度中 */
+            margin: 5px 0; /* 段落間距 */
+            text-align: left; /* 左對齊文字 */
+            font-size: 18px;
+            color: #2b3b60; /* 使用深色以突出標題 */
+        }
+        ul, ol {
+            font-size: 18px; /* 設置列點的字體大小 */
+            line-height: 1.5; /* 調整行間距，讓列點更易於閱讀 */
+            font-family: "Times New Roman", Times, serif; /* 列點使用 Times New Roman 字體 */
+            color: #2b3b60; /* 使用深色以突出標題 */
+        }
+        li {
+            margin-bottom: 10px; /* 增加列點之間的距離 */
+        }
+    
+        .row {
+            display: flex; /* 水平排列兩組元素 */
+            justify-content: center; /* 左右排列 */
+            width: 100%; /* 行寬度撐滿螢幕 */
+            margin-bottom: 30px; /* 每行的間距 */
+            padding: 10px 0 20px 0; /* 行內上下內邊距 */
+            box-sizing: border-box; /* 確保邊距計入寬度 */
+            /* border-bottom: 1px solid #676565; 分隔線 */
+        }
+    
+        .row:last-child {
+            border-bottom: none; /* 最後一行無分隔線 */
+        }
+    
+        .group {
+            display: flex; /* 垂直排列文字、音檔和畫布 */
+            flex-direction: column;
+            align-items: center; /* 左對齊 */
+            width: 48%; /* 每組占螢幕的一半 */
+            box-sizing: border-box; /* 包含內邊距 */
+            padding-left: var(--canvas-padding-left);
+            padding-right: 50px; /* 左側留白空間 */
+        }
+
+        .text-container {
+            font-family: "Times New Roman", Times, serif; 
+            align-self: flex-start; /* 僅文字靠左對齊 */
+            text-align: left; /* 段落文字左對齊 */
+            width: 100%; /* 撐滿容器寬度 */
+            margin-bottom: 5px; /* 與音檔之間的間距 */
+        }
+    
+        audio {
+            display: block; /* 音檔控件獨占一行 */
+            margin: 5px auto 10px auto; /* 音檔靠左對齊 */
+            width: calc(100% - 20px); /* 音檔寬度自適應並預留左右間距 */
+            width: 100%; /* 撐滿組的寬度 */
+        }
+    
+        canvas {
+            display: block; /* 畫布獨占一行 */
+            margin-top: 10px; /* 與音檔的間距 */
+            width: 100%; /* 撐滿組的寬度 */
+            border: 2px solid rgba(146, 154, 178, 0.5); /* 添加黑色邊框，設置邊框為 2px */
+            border-radius: 15px; /* 邊框圓角化 */
+        }
+
+    </style>
+    
+</head>
+<body>
+    
+    <header class="header-container">
+        <h1>Piano Accompaniment Style Transfer</h1>
+    </header>
+
+    <h2>Task 1: whole song style transfer</h2>
+    <h3>Model 1: lead sheet + style token</h3>
+
+    <!-- 第一行 -->
+    <div class="row">
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 1 - Arranger 1]</b></p>
+                <ul>
+                    <li>average rythmic intensity: </li>
+                    <li>average polyphony:</li>
+                    <li>melodic fidelity: </li>
+                </ul>
+            </div>
+            <audio id="audio1" controls>
+                <source src="audio/whole/0408_add/2toDOM7-T_k_id1_samp9_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll1" width="400" height="200"></canvas>
+        </div>
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 1 - Arranger 2]</b></p>
+                <ul>
+                    <li>average rythmic intensity: </li>
+                    <li>average polyphony:</li>
+                    <li>melodic fidelity: </li>
+                </ul>
+            </div>
+            <audio id="audio2" controls>
+                <source src="audio/whole/0408_add/2toDOM7-T_k_id2_samp4_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll2" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <h3>Model 2: lead sheet (no chord) + style token</h3>
+    <div class="row">
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 1]</b></p>
+                <ul>
+                    <li>average rythmic intensity: </li>
+                    <li>average polyphony:</li>
+                    <li>melodic fidelity: </li>
+                </ul>
+            </div>
+            <audio id="audio3" controls>
+                <source src="audio/whole/0410_no_chord/2toDOM7-T_k_id1_samp9_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll3" width="400" height="200"></canvas>
+        </div>
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 2]</b></p>
+                <ul>
+                    <li>average rythmic intensity: </li>
+                    <li>average polyphony:</li>
+                    <li>melodic fidelity: </li>
+                </ul>
+            </div>
+            <audio id="audio4" controls>
+                <source src="audio/whole/0410_no_chord/2toDOM7-T_k_id2_samp5_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll4" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <hr style="border: 1px solid #3f3e3e; margin: 0 30px 10px 30px;">
+    <h2>Task 2: style change in one song</h2>
+
+    <!-- 第二行 -->
+    <div class="row">
+        <div class="group">
+            <div class="text-container">
+                <p><b>Arranger 1 -> 2, change after bar 8</b></p>
+                <ul>
+                    <li>average rythmic intensity: </li>
+                    <li>average polyphony:</li>
+                    <li>melodic fidelity: </li>
+                </ul>
+            </div>
+            <audio id="audio5" controls>
+                <source src="audio/change/0408_add/-2xX0VBcL7k_id1_samp1_full_change.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll5" width="400" height="200"></canvas>
+        </div>
+        <div class="group">
+            <div class="text-container">
+                <p><b>Arranger 2 -> 1, change after bar 8</b></p>
+                <ul>
+                    <li>average rythmic intensity: </li>
+                    <li>average polyphony:</li>
+                    <li>melodic fidelity: </li>
+                </ul>
+            </div>
+            <audio id="audio6" controls>
+                <source src="audio/change/0408_add/-2xX0VBcL7k_id2_samp4_full_change.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll6" width="400" height="200"></canvas>
+        </div>
+    </div>
+    
+    <!-- 放置腳本 -->
+    <script>
+        // 定義 Canvas 和音檔 ID 與對應的 JSON 文件路徑
+        const elements = [
+            { canvasId: "pianoRoll1", audioId: "audio1", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id1_samp9_full.json" },
+            { canvasId: "pianoRoll2", audioId: "audio2", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id2_samp4_full.json" },
+            { canvasId: "pianoRoll3", audioId: "audio3", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id1_samp9_full.json" },
+            { canvasId: "pianoRoll4", audioId: "audio4", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id2_samp5_full.json" },
+            { canvasId: "pianoRoll5", audioId: "audio5", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id1_samp1_full_change.json" },
+            { canvasId: "pianoRoll6", audioId: "audio6", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id2_samp4_full_change.json" },
+        ];
+
+        elements.forEach(element => {
+            const canvas = document.getElementById(element.canvasId);
+            const ctx = canvas.getContext("2d");
+            const audio = document.getElementById(element.audioId);
+
+            const noteHeight = 6;
+            const noteSpacing = 2;
+            const scale = 25;
+            const rightMargin = 50
+
+            let minPitch = Infinity;
+            let maxPitch = -Infinity;
+
+            function calculateCanvasDimensions(notes) {
+                const totalWidth = notes.reduce((maxWidth, note) => {
+                    const noteEnd = note.start + note.duration;
+                    return Math.max(maxWidth, noteEnd * scale);
+                }, 0);
+
+                notes.forEach(note => {
+                    if (note.pitch < minPitch) minPitch = note.pitch;
+                    if (note.pitch > maxPitch) maxPitch = note.pitch;
+                });
+                minPitch = minPitch - 3
+                maxPitch = maxPitch + 3
+
+                const totalHeight = (maxPitch - minPitch + 1) * (noteHeight + noteSpacing);
+                // canvas.width = totalWidth+rightMargin;
+                canvas.width = totalWidth + Math.ceil(totalWidth * 0.05); // 增加 5% 緩衝
+
+                canvas.height = totalHeight;
+            }
+
+            function calculateYPosition(pitch) {
+                const rangeHeight = noteHeight + noteSpacing;
+                return canvas.height - (pitch - minPitch) * rangeHeight;
+            }
+
+            function drawPianoRoll(notes, currentTime) {
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                notes.forEach(note => {
+                    const x = note.start * scale;
+                    const y = calculateYPosition(note.pitch);
+                    const width = note.duration * scale;
+                    const height = noteHeight;
+
+                    if (currentTime >= note.start && currentTime <= note.start + note.duration) {
+                        ctx.fillStyle = "rgba(255, 165, 0, 0.9)";
+                    } else {
+                        ctx.fillStyle = "rgba(70, 150, 230, 0.5)";
+                    }
+
+                    ctx.fillRect(x, y, width, height);
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(x, y, width, height);
+                });
+            }
+
+            function startPianoRollAnimation(notes) {
+                function update() {
+                    const currentTime = audio.currentTime;
+                    drawPianoRoll(notes, currentTime);
+                    requestAnimationFrame(update);
+                }
+
+                audio.addEventListener("play", () => {
+                    requestAnimationFrame(update);
+                });
+            }
+
+            // 動態抓取每個元素的 JSON 文件
+            fetch(element.jsonPath)
+                .then(response => response.json())
+                .then(data => {
+                    const notes = data;
+                    calculateCanvasDimensions(notes);
+                    drawPianoRoll(notes, 0);
+                    startPianoRollAnimation(notes);
+                })
+                .catch(error => {
+                    console.error(`加載 ${element.jsonPath} 文件時出錯:`, error);
+                });
+        });
+    </script>
+</body>
+</html>

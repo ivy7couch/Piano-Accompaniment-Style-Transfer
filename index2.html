@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Piano Roll Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        audio {
+            display: block; /* 讓音檔在畫布上方水平居中 */
+            margin: 0 auto 20px;
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Accompaniment Style Transfer Demo</h1>
+    <!-- 音檔播放控件在 Piano Roll 上方 -->
+    <audio id="audio" controls>
+        <source src="test_audio.mp3" type="audio/mpeg">
+        您的瀏覽器不支持音檔播放。
+    </audio>
+    
+    <!-- Piano Roll 畫布 -->
+    <canvas id="pianoRoll" width="800" height="400"></canvas>
+
+    <!-- JavaScript 代碼 -->
+    <script>
+        const canvas = document.getElementById("pianoRoll");
+        const ctx = canvas.getContext("2d");
+        const audio = document.getElementById("audio");
+
+        let minPitch = Infinity; // 初始化最小音高
+        let maxPitch = -Infinity; // 初始化最大音高
+
+        // 音符高度和間距設置
+        const noteHeight = 8; // 音符高度
+        const noteSpacing = 4; // 垂直間距
+
+        function drawStaticPianoRoll(notes) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空畫布
+
+            notes.forEach(note => {
+                const x = note.start * 50; // 根據開始時間計算 X 軸位置
+                const y = calculateYPosition(note.pitch); // 計算音符的 Y 軸位置
+                const width = note.duration * 50; // 持續時間 -> 矩形寬度
+                const height = noteHeight; // 音符高度
+
+                // 繪製所有音符（靜態）
+                if (x + width > 0 && x < canvas.width) { // 確保在畫布內
+                    ctx.fillStyle = "rgba(173, 216, 230, 0.7)"; // 淺藍色
+                    ctx.fillRect(x, y, width, height);
+                }
+            });
+        }
+
+
+        // 計算動態音域範圍
+        function calculateDynamicRange(notes) {
+            notes.forEach(note => {
+                if (note.pitch < minPitch) minPitch = note.pitch-10;
+                if (note.pitch > maxPitch) maxPitch = note.pitch+5;
+            });
+            const noteHeight = 8; // 音符高度
+            const noteSpacing = 4; // 音符間隔
+            const totalRange = (maxPitch - minPitch + 1) * (noteHeight + noteSpacing);
+
+            // 動態設置畫布高度
+            if (canvas.height < totalRange) {
+                canvas.height = totalRange;
+            }
+        }
+
+        // 將音高映射到 Y 軸
+        function calculateYPosition(pitch) {
+            const rangeHeight = noteHeight + noteSpacing;
+            return canvas.height - (pitch - minPitch) * rangeHeight;
+        }
+
+
+        // 繪製 Piano Roll
+        function drawPianoRoll(notes, currentTime) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空畫布
+            const scale = 80
+
+            notes.forEach(note => {
+                const x = (note.start - currentTime) * scale; // 計算音符的 X 軸起點
+                const y = calculateYPosition(note.pitch); // 計算音符的 Y 軸位置
+                const width = note.duration * scale; // 根據持續時間計算寬度
+                const height = noteHeight; // 音符高度
+
+                
+                if (x + width > 0 && x < canvas.width) { // 僅繪製可見範圍內的音符
+                    ctx.fillStyle = "rgba(173, 216, 230, 0.7)"; // 淺藍色
+                    ctx.fillRect(x, y, width, height);
+                }
+            });
+        }
+
+        
+        // 啟動 Piano Roll 動畫
+        function startPianoRollAnimation(notes) {
+            function update() {
+                const currentTime = audio.currentTime; // 音頻當前播放時間
+                drawPianoRoll(notes, currentTime);
+                requestAnimationFrame(update); // 持續更新動畫
+            }
+
+            audio.addEventListener("play", () => {
+                requestAnimationFrame(update);
+            });
+        }
+
+        // 加載音符數據
+        fetch("notes.json")
+            .then(response => response.json())
+            .then(data => {
+                const notes = data;
+
+                // 計算最高和最低音
+                calculateDynamicRange(notes);
+                // 靜態繪製音符
+                drawStaticPianoRoll(notes);
+
+                // 對音符按開始時間排序，確保從左到右繪製
+                notes.sort((a, b) => a.start - b.start || a.pitch - b.pitch);
+
+                // 啟動動畫
+                startPianoRollAnimation(notes);
+            })
+            .catch(error => {
+                console.error("加載 JSON 文件時出錯:", error);
+            });
+    </script>
+</body>
+</html>
