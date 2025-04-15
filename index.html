@@ -14,7 +14,7 @@
         }
 
         :root {
-            --canvas-padding-left: 30px;
+            --canvas-padding-left: 80px;
         }
     
         .header-container {
@@ -38,13 +38,20 @@
         }
         h2 {
             font-family: "Times New Roman", Times, serif; 
-            margin-left: var(--canvas-padding-left);
+            margin-left: 70px;
             font-size: 25px;
         }
         h3 {
             font-family: "Times New Roman", Times, serif; 
-            margin-left: var(--canvas-padding-left);
+            margin-left: 70px;
             font-size: 20px;
+        }
+        h4 {
+            font-family: "Times New Roman"; 
+            margin-left: 70px;
+            margin-right: 70px;
+            font-size: 20px;
+            color: rgb(67, 65, 65);
         }
         p {
             display: inline-block; /* 背景框大小根據文字長度自動調整 */
@@ -87,8 +94,8 @@
             align-items: center; /* 左對齊 */
             width: 48%; /* 每組占螢幕的一半 */
             box-sizing: border-box; /* 包含內邊距 */
-            padding-left: var(--canvas-padding-left);
-            padding-right: 50px; /* 左側留白空間 */
+            padding-left: 60px;
+            padding-right: 60px; /* 左側留白空間 */
         }
 
         .text-container {
@@ -106,10 +113,21 @@
             width: 100%; /* 撐滿組的寬度 */
         }
     
+        .container {
+            display: flex;
+            justify-content: space-evenly; /* 讓兩塊平分頁面 */
+            align-items: center; /* 垂直居中 */
+        }
+
         canvas {
+            /* max-width: 100%; 可選：限制最大寬度 */
+            height: auto; 
+            /* width: calc(90% - 20px); 每塊占50%，減去邊距 */
+            box-sizing: content-box;
             display: block; /* 畫布獨占一行 */
             margin-top: 10px; /* 與音檔的間距 */
-            width: 100%; /* 撐滿組的寬度 */
+            /* object-fit: contain; 保持內容比例不變 */
+            /* width: 100%; 撐滿組的寬度 */
             border: 2px solid rgba(146, 154, 178, 0.5); /* 添加黑色邊框，設置邊框為 2px */
             border-radius: 15px; /* 邊框圓角化 */
         }
@@ -123,6 +141,8 @@
         <h1>Piano Accompaniment Style Transfer</h1>
     </header>
 
+    <h4>The following piano generations are conditioned on two arrangers: arranger 1 and arranger 2, representing different accompaniment styles.
+        <br>Arranger 1 features a simpler accompaniment style with fewer variations in the notes, while arranger 2 is more complex, often involving dense arrangements and multiple notes played simultaneously.</h4> 
     <h2>Task 1: whole song style transfer</h2>
     <h3>Model 1: lead sheet + style token</h3>
 
@@ -132,31 +152,35 @@
             <div class="text-container">
                 <p><b>[Demo 1 - Arranger 1]</b></p>
                 <ul>
-                    <li>average rythmic intensity: </li>
-                    <li>average polyphony:</li>
-                    <li>melodic fidelity: </li>
+                    <li>average rythmic intensity: 0.36</li>
+                    <li>average polyphony: 4.13</li>
+                    <li>melodic fidelity: x</li>
                 </ul>
             </div>
             <audio id="audio1" controls>
-                <source src="audio/whole/0408_add/2toDOM7-T_k_id1_samp9_full.mp3" type="audio/mpeg">
+                <source src="audio/whole/0408_add/2toDOM7-T_k_id1_samp3_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
-            <canvas id="pianoRoll1" width="400" height="200"></canvas>
+            <div class="container">
+                <canvas id="pianoRoll1" width="400" height="200"></canvas>
+            </div>
         </div>
         <div class="group">
             <div class="text-container">
                 <p><b>[Demo 1 - Arranger 2]</b></p>
                 <ul>
-                    <li>average rythmic intensity: </li>
-                    <li>average polyphony:</li>
-                    <li>melodic fidelity: </li>
+                    <li>average rythmic intensity: 0.51</li>
+                    <li>average polyphony: 5.07</li>
+                    <li>melodic fidelity: x</li>
                 </ul>
             </div>
             <audio id="audio2" controls>
-                <source src="audio/whole/0408_add/2toDOM7-T_k_id2_samp4_full.mp3" type="audio/mpeg">
+                <source src="audio/whole/0408_add/2toDOM7-T_k_id2_samp2_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
-            <canvas id="pianoRoll2" width="400" height="200"></canvas>
+            <div class="container">
+                <canvas id="pianoRoll2" width="400" height="200"></canvas>
+            </div>
         </div>
     </div>
 
@@ -166,13 +190,13 @@
             <div class="text-container">
                 <p><b>[Demo 2 - Arranger 1]</b></p>
                 <ul>
-                    <li>average rythmic intensity: </li>
-                    <li>average polyphony:</li>
-                    <li>melodic fidelity: </li>
+                    <li>average rythmic intensity:0.32 </li>
+                    <li>average polyphony: 3.98</li>
+                    <li>melodic fidelity: x</li>
                 </ul>
             </div>
             <audio id="audio3" controls>
-                <source src="audio/whole/0410_no_chord/2toDOM7-T_k_id1_samp9_full.mp3" type="audio/mpeg">
+                <source src="audio/whole/0410_no_chord/2toDOM7-T_k_id1_samp8_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
             <canvas id="pianoRoll3" width="400" height="200"></canvas>
@@ -181,13 +205,13 @@
             <div class="text-container">
                 <p><b>[Demo 2 - Arranger 2]</b></p>
                 <ul>
-                    <li>average rythmic intensity: </li>
-                    <li>average polyphony:</li>
-                    <li>melodic fidelity: </li>
+                    <li>average rythmic intensity:0.5 </li>
+                    <li>average polyphony: 6.43</li>
+                    <li>melodic fidelity: x</li>
                 </ul>
             </div>
             <audio id="audio4" controls>
-                <source src="audio/whole/0410_no_chord/2toDOM7-T_k_id2_samp5_full.mp3" type="audio/mpeg">
+                <source src="audio/whole/0410_no_chord/2toDOM7-T_k_id2_samp4_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
             <canvas id="pianoRoll4" width="400" height="200"></canvas>
@@ -209,7 +233,7 @@
                 </ul>
             </div>
             <audio id="audio5" controls>
-                <source src="audio/change/0408_add/-2xX0VBcL7k_id1_samp1_full_change.mp3" type="audio/mpeg">
+                <source src="audio/change/0408_add/-2xX0VBcL7k_id1_samp2_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
             <canvas id="pianoRoll5" width="400" height="200"></canvas>
@@ -224,7 +248,7 @@
                 </ul>
             </div>
             <audio id="audio6" controls>
-                <source src="audio/change/0408_add/-2xX0VBcL7k_id2_samp4_full_change.mp3" type="audio/mpeg">
+                <source src="audio/change/0408_add/-2xX0VBcL7k_id2_samp1_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
             <canvas id="pianoRoll6" width="400" height="200"></canvas>
@@ -234,100 +258,184 @@
     <!-- 放置腳本 -->
     <script>
         // 定義 Canvas 和音檔 ID 與對應的 JSON 文件路徑
-        const elements = [
-            { canvasId: "pianoRoll1", audioId: "audio1", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id1_samp9_full.json" },
-            { canvasId: "pianoRoll2", audioId: "audio2", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id2_samp4_full.json" },
-            { canvasId: "pianoRoll3", audioId: "audio3", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id1_samp9_full.json" },
-            { canvasId: "pianoRoll4", audioId: "audio4", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id2_samp5_full.json" },
-            { canvasId: "pianoRoll5", audioId: "audio5", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id1_samp1_full_change.json" },
-            { canvasId: "pianoRoll6", audioId: "audio6", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id2_samp4_full_change.json" },
+        // const elements = [
+        //     { canvasId: "pianoRoll1", audioId: "audio1", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id1_samp9_full.json" },
+        //     { canvasId: "pianoRoll2", audioId: "audio2", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id2_samp4_full.json" },
+        //     { canvasId: "pianoRoll3", audioId: "audio3", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id1_samp9_full.json" },
+        //     { canvasId: "pianoRoll4", audioId: "audio4", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id2_samp5_full.json" },
+        //     { canvasId: "pianoRoll5", audioId: "audio5", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id1_samp1_full_change.json" },
+        //     { canvasId: "pianoRoll6", audioId: "audio6", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id2_samp4_full_change.json" },
+        // ];
+
+        const pairedElements = [
+            [
+                { canvasId: "pianoRoll1", audioId: "audio1", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id1_samp3_full.json" },
+                { canvasId: "pianoRoll2", audioId: "audio2", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id2_samp2_full.json" },
+            ],
+            [
+                { canvasId: "pianoRoll3", audioId: "audio3", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id1_samp8_full.json" },
+                { canvasId: "pianoRoll4", audioId: "audio4", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id2_samp4_full.json" },
+            ],
+            [
+                { canvasId: "pianoRoll5", audioId: "audio5", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id1_samp2_full.json" },
+                { canvasId: "pianoRoll6", audioId: "audio6", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id2_samp1_full.json" },
+            ],
         ];
 
-        elements.forEach(element => {
-            const canvas = document.getElementById(element.canvasId);
-            const ctx = canvas.getContext("2d");
-            const audio = document.getElementById(element.audioId);
-
+        pairedElements.forEach(pair => {
+            let minPitchPair = Infinity;
+            let maxPitchPair = -Infinity;
             const noteHeight = 6;
             const noteSpacing = 2;
-            const scale = 25;
-            const rightMargin = 50
+            let maxDuration = 0; // 全局的最大時長
 
-            let minPitch = Infinity;
-            let maxPitch = -Infinity;
+            // 第一輪：計算最大範圍
+            Promise.all(
+                pair.map(element =>
+                    fetch(element.jsonPath)
+                        .then(response => response.json())
+                        .then(data => {
+                            const totalDuration = data.reduce((maxEnd, note) => {
+                                const noteEnd = note.start + note.duration;
+                                return Math.max(maxEnd, noteEnd);
+                                }, 0);
 
-            function calculateCanvasDimensions(notes) {
-                const totalWidth = notes.reduce((maxWidth, note) => {
-                    const noteEnd = note.start + note.duration;
-                    return Math.max(maxWidth, noteEnd * scale);
-                }, 0);
+                            // 更新最大總時長
+                            maxDuration = Math.max(maxDuration, totalDuration);
+                        
+                            data.forEach(note => {
+                                if (note.pitch < minPitchPair) minPitchPair = note.pitch;
+                                if (note.pitch > maxPitchPair) maxPitchPair = note.pitch;
+                            });
+                        })
+                )
+            ).then(() => {
+                // 增加緩衝範圍（可選）
+                minPitchPair = Math.floor(minPitchPair - 3);
+                maxPitchPair = Math.ceil(maxPitchPair + 3);
 
-                notes.forEach(note => {
-                    if (note.pitch < minPitch) minPitch = note.pitch;
-                    if (note.pitch > maxPitch) maxPitch = note.pitch;
-                });
-                minPitch = minPitch - 3
-                maxPitch = maxPitch + 3
+                const totalHeight = Math.round((maxPitchPair - minPitchPair + 1) * (noteHeight + noteSpacing));
 
-                const totalHeight = (maxPitch - minPitch + 1) * (noteHeight + noteSpacing);
-                // canvas.width = totalWidth+rightMargin;
-                canvas.width = totalWidth + Math.ceil(totalWidth * 0.05); // 增加 5% 緩衝
+                // 統一高度應用
+                pair.forEach(element => {
+                    const canvas = document.getElementById(element.canvasId);
+                    canvas.height = totalHeight; // 強制統一高度
+                // });
+                    fetch(element.jsonPath)
+                            .then(response => response.json())
+                            .then(data => {
 
-                canvas.height = totalHeight;
-            }
+                    // pair.forEach(element => {
+                        // const canvas = document.getElementById(element.canvasId);
+                    const ctx = canvas.getContext("2d");
+                    const audio = document.getElementById(element.audioId);
+                    console.warn(`音符超出範圍: ${totalHeight}`);
 
-            function calculateYPosition(pitch) {
-                const rangeHeight = noteHeight + noteSpacing;
-                return canvas.height - (pitch - minPitch) * rangeHeight;
-            }
+                    // const noteHeight = 6;
+                    // const noteSpacing = 2;
+                    const scale = 21;
+                    const rightMargin = 30
+                    const leftMargin = 10
 
-            function drawPianoRoll(notes, currentTime) {
-                ctx.fillStyle = "white";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    // 計算當前畫布的總時長
+                    const totalDuration = data.reduce((maxEnd, note) => {
+                        const noteEnd = note.start + note.duration;
+                        return Math.max(maxEnd, noteEnd);
+                    }, 0);
 
-                notes.forEach(note => {
-                    const x = note.start * scale;
-                    const y = calculateYPosition(note.pitch);
-                    const width = note.duration * scale;
-                    const height = noteHeight;
+                    // 計算比例因子
+                    const scaleFactor = maxDuration / totalDuration;
+                    console.warn(`scale factor: ${scaleFactor}`);
 
-                    if (currentTime >= note.start && currentTime <= note.start + note.duration) {
-                        ctx.fillStyle = "rgba(255, 165, 0, 0.9)";
-                    } else {
-                        ctx.fillStyle = "rgba(70, 150, 230, 0.5)";
+                    // 更新每個音符的位置和持續時間
+                    const scaledNotes = data.map(note => ({
+                        ...note,
+                        start: note.start * scaleFactor,
+                        duration: note.duration * scaleFactor
+                    }));
+
+                    const canvasWidth = maxDuration*scale + rightMargin;
+                    canvas.width = canvasWidth;
+
+
+                    // let minPitch = Infinity;
+                    // let maxPitch = -Infinity;
+
+                    function calculateCanvasDimensions(notes) {
+                        const totalWidth = notes.reduce((maxWidth, note) => {
+                            const noteEnd = note.start + note.duration;
+                            return Math.max(maxWidth, noteEnd * scale);
+                        }, 0);
+
+                        // notes.forEach(note => {
+                        //     if (note.pitch < minPitch) minPitch = note.pitch;
+                        //     if (note.pitch > maxPitch) maxPitch = note.pitch;
+                        // });
+                        // minPitch = minPitch - 3
+                        // maxPitch = maxPitch + 3
+
+                        // const totalHeight = (maxPitch - minPitch + 1) * (noteHeight + noteSpacing);
+                        // canvas.width = totalWidth+rightMargin;
+                        // canvas.width = totalWidth + Math.ceil(totalWidth * 0.05); // 增加 5% 緩衝
+                        canvas.height = totalHeight;
                     }
 
-                    ctx.fillRect(x, y, width, height);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 1;
-                    ctx.strokeRect(x, y, width, height);
-                });
-            }
+                    function calculateYPosition(pitch) {
+                        const rangeHeight = noteHeight + noteSpacing;
+                        return canvas.height - (pitch - minPitchPair) * rangeHeight;
+                    }
 
-            function startPianoRollAnimation(notes) {
-                function update() {
-                    const currentTime = audio.currentTime;
-                    drawPianoRoll(notes, currentTime);
-                    requestAnimationFrame(update);
-                }
+                    function drawPianoRoll(notes, currentTime) {
+                        ctx.fillStyle = "white";
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        console.warn(`canvas height: ${canvas.height}`);
 
-                audio.addEventListener("play", () => {
-                    requestAnimationFrame(update);
-                });
-            }
 
-            // 動態抓取每個元素的 JSON 文件
-            fetch(element.jsonPath)
-                .then(response => response.json())
-                .then(data => {
-                    const notes = data;
-                    calculateCanvasDimensions(notes);
-                    drawPianoRoll(notes, 0);
-                    startPianoRollAnimation(notes);
-                })
-                .catch(error => {
-                    console.error(`加載 ${element.jsonPath} 文件時出錯:`, error);
-                });
+                        notes.forEach(note => {
+                            const x = note.start * scale + leftMargin;
+                            const y = calculateYPosition(note.pitch);
+                            const width = note.duration * scale;
+                            const height = noteHeight;
+
+                            if (currentTime >= note.start && currentTime <= note.start + note.duration) {
+                                ctx.fillStyle = "rgba(255, 165, 0, 0.9)";
+                            } else {
+                                ctx.fillStyle = "rgba(70, 150, 230, 0.5)";
+                            }
+
+                            ctx.fillRect(x, y, width, height);
+                            ctx.strokeStyle = "black";
+                            ctx.lineWidth = 1;
+                            ctx.strokeRect(x, y, width, height);
+                        });
+                    }
+
+                    function startPianoRollAnimation(notes) {
+                        function update() {
+                            const currentTime = audio.currentTime;
+                            drawPianoRoll(notes, currentTime);
+                            requestAnimationFrame(update);
+                        }
+
+                        audio.addEventListener("play", () => {
+                            requestAnimationFrame(update);
+                        });
+                    }
+
+                    // 動態抓取每個元素的 JSON 文件
+                    // fetch(element.jsonPath)
+                    //     .then(response => response.json())
+                    //     .then(data => {
+                            const notes = data;
+                            calculateCanvasDimensions(notes);
+                            drawPianoRoll(notes, 0);
+                            startPianoRollAnimation(notes);
+                        })
+                        .catch(error => {
+                            console.error(`加載 ${element.jsonPath} 文件時出錯:`, error);
+                        });
+                    });
+            });
         });
     </script>
 </body>
