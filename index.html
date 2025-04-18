@@ -270,6 +270,8 @@
         //     { canvasId: "pianoRoll6", audioId: "audio6", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id2_samp4_full_change.json" },
         // ];
 
+        const audioElements = []; // 用來儲存所有音檔的引用
+
         const pairedElements = [
             [
                 { canvasId: "pianoRoll1", audioId: "audio1", jsonPath: "notes/whole/0408_add/2toDOM7-T_k_id1_samp3_full.json" },
@@ -333,6 +335,23 @@
                     const ctx = canvas.getContext("2d");
                     const audio = document.getElementById(element.audioId);
                     console.warn(`音符超出範圍: ${totalHeight}`);
+
+                    // 將音檔加入全局管理
+                    audioElements.push(audio);
+
+                    // 綁定播放事件
+                    audio.addEventListener("play", () => {
+                        // 暫停其他音檔
+                        audioElements.forEach(otherAudio => {
+                            if (otherAudio !== audio) {
+                                otherAudio.pause();
+                            }
+                        });
+                    });
+
+                    audio.addEventListener("ended", () => {
+                        console.log(`${audio.id} 播放完成`);
+                    });
 
                     // const noteHeight = 6;
                     // const noteSpacing = 2;
