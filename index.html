@@ -192,7 +192,7 @@
             <div class="text-container">
                 <p><b>[Demo 2 - Arranger 1]</b></p>
                 <ul>
-                    <li>average rythmic intensity:0.32 </li>
+                    <li>average rythmic intensity: 0.32 </li>
                     <li>average polyphony: 3.98</li>
                     <li>melodic fidelity: x</li>
                 </ul>
@@ -207,7 +207,7 @@
             <div class="text-container">
                 <p><b>[Demo 2 - Arranger 2]</b></p>
                 <ul>
-                    <li>average rythmic intensity:0.5 </li>
+                    <li>average rythmic intensity: 0.5 </li>
                     <li>average polyphony: 6.43</li>
                     <li>melodic fidelity: x</li>
                 </ul>
@@ -217,6 +217,108 @@
                 您的瀏覽器不支持音檔播放。
             </audio>
             <canvas id="pianoRoll4" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <h3>Model 3: encoder-decoder with same segments</h3>
+    <div class="row">
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 1]</b></p>
+                <ul>
+                    <li>average rythmic intensity: 0.45 </li>
+                    <li>average polyphony: 4.39</li>
+                    <li>melodic fidelity: 1.0</li>
+                </ul>
+            </div>
+            <audio id="audio5" controls>
+                <source src="audio/encoder/whole/0427_same/2toDOM7-T_k_id1_syWkUc5fz8g_samp3_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll5" width="400" height="200"></canvas>
+        </div>
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 2]</b></p>
+                <ul>
+                    <li>average rythmic intensity: 0.42 </li>
+                    <li>average polyphony: 5.59</li>
+                    <li>melodic fidelity: 0.39</li>
+                </ul>
+            </div>
+            <audio id="audio6" controls>
+                <source src="audio/encoder/whole/0427_same/2toDOM7-T_k_id2_eS4ZQY5ufCc_samp6_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll6" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <h3>Model 4: encoder-decoder with neighbor segments</h3>
+    <div class="row">
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 1]</b></p>
+                <ul>
+                    <li>average rythmic intensity: 0.43 </li>
+                    <li>average polyphony: 3.66</li>
+                    <li>melodic fidelity: 0.97</li>
+                </ul>
+            </div>
+            <audio id="audio7" controls>
+                <source src="audio/encoder/whole/0427_neighbor/2toDOM7-T_k_id1_hsa-lJcQJoI_samp8_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll7" width="400" height="200"></canvas>
+        </div>
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 2]</b></p>
+                <ul>
+                    <li>average rythmic intensity: 0.47 </li>
+                    <li>average polyphony: 5.36</li>
+                    <li>melodic fidelity: 0.98</li>
+                </ul>
+            </div>
+            <audio id="audio8" controls>
+                <source src="audio/encoder/whole/0427_neighbor/2toDOM7-T_k_id2_uPahZEVb8qY_samp6_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll8" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <h3>Model 5: encoder-decoder with similar segments</h3>
+    <div class="row">
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 1]</b></p>
+                <ul>
+                    <li>average rythmic intensity: 0.45 </li>
+                    <li>average polyphony: 4.83</li>
+                    <li>melodic fidelity: 1.0</li>
+                </ul>
+            </div>
+            <audio id="audio9" controls>
+                <source src="audio/encoder/whole/0427_similar/2toDOM7-T_k_id1_d5SkHoHzoZQ_samp2_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll9" width="400" height="200"></canvas>
+        </div>
+        <div class="group">
+            <div class="text-container">
+                <p><b>[Demo 2 - Arranger 2]</b></p>
+                <ul>
+                    <li>average rythmic intensity: 0.45 </li>
+                    <li>average polyphony: 6.77</li>
+                    <li>melodic fidelity: 1.0</li>
+                </ul>
+            </div>
+            <audio id="audio10" controls>
+                <source src="audio/encoder/whole/0427_similar/2toDOM7-T_k_id2_Ei_wjbhIw4g_samp9_full.mp3" type="audio/mpeg">
+                您的瀏覽器不支持音檔播放。
+            </audio>
+            <canvas id="pianoRoll10" width="400" height="200"></canvas>
         </div>
     </div>
 
@@ -235,11 +337,11 @@
                     <li>melodic fidelity: </li>
                 </ul>
             </div>
-            <audio id="audio5" controls>
+            <audio id="audio11" controls>
                 <source src="audio/change/0408_add/-2xX0VBcL7k_id1_samp2_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
-            <canvas id="pianoRoll5" width="400" height="200"></canvas>
+            <canvas id="pianoRoll11" width="400" height="200"></canvas>
         </div>
         <div class="group">
             <div class="text-container">
@@ -250,11 +352,11 @@
                     <li>melodic fidelity: </li>
                 </ul>
             </div>
-            <audio id="audio6" controls>
+            <audio id="audio12" controls>
                 <source src="audio/change/0408_add/-2xX0VBcL7k_id2_samp1_full.mp3" type="audio/mpeg">
                 您的瀏覽器不支持音檔播放。
             </audio>
-            <canvas id="pianoRoll6" width="400" height="200"></canvas>
+            <canvas id="pianoRoll12" width="400" height="200"></canvas>
         </div>
     </div>
     
@@ -282,9 +384,22 @@
                 { canvasId: "pianoRoll4", audioId: "audio4", jsonPath: "notes/whole/0410_no_chord/2toDOM7-T_k_id2_samp4_full.json" },
             ],
             [
-                { canvasId: "pianoRoll5", audioId: "audio5", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id1_samp2_full.json" },
-                { canvasId: "pianoRoll6", audioId: "audio6", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id2_samp1_full.json" },
+                { canvasId: "pianoRoll5", audioId: "audio5", jsonPath: "notes/encoder/whole/0427_same/2toDOM7-T_k_id1_syWkUc5fz8g_samp3_full.json" },
+                { canvasId: "pianoRoll6", audioId: "audio6", jsonPath: "notes/encoder/whole/0427_same/2toDOM7-T_k_id2_eS4ZQY5ufCc_samp6_full.json" },
             ],
+            [
+                { canvasId: "pianoRoll7", audioId: "audio7", jsonPath: "notes/encoder/whole/0427_neighbor/2toDOM7-T_k_id1_hsa-lJcQJoI_samp8_full.json" },
+                { canvasId: "pianoRoll8", audioId: "audio8", jsonPath: "notes/encoder/whole/0427_neighbor/2toDOM7-T_k_id2_uPahZEVb8qY_samp6_full.json" },
+            ],
+            [
+                { canvasId: "pianoRoll9", audioId: "audio9", jsonPath: "notes/encoder/whole/0427_similar/2toDOM7-T_k_id1_d5SkHoHzoZQ_samp2_full.json" },
+                { canvasId: "pianoRoll10", audioId: "audio10", jsonPath: "notes/encoder/whole/0427_similar/2toDOM7-T_k_id2_Ei_wjbhIw4g_samp9_full.json" },
+            ],
+            [
+                { canvasId: "pianoRoll11", audioId: "audio11", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id1_samp2_full.json" },
+                { canvasId: "pianoRoll12", audioId: "audio12", jsonPath: "notes/change/0408_add/-2xX0VBcL7k_id2_samp1_full.json" },
+            ],
+            
         ];
 
         pairedElements.forEach(pair => {
