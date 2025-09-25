@@ -138,9 +138,11 @@
 <body>
     
     <header class="header-container">
-        <h1>Piano Accompaniment Style Transfer</h1>
+        <h1>Transformer-Based Unpaired Piano Accompaniment Style Transfer</h1>
     </header>
 
+    <h4>Abstract</h4>
+        <p>style transfer for pop piano covers requires effective content-style disentanglement. To address this, we propose a framework that uses a lead sheet (namely, melody and chords) as a style-agnostic content anchor, enabling precise style manipulation without requiring paired data. We then systematically compare several Transformer-based architectures to evaluate the efficacy of a direct token-based conditioning strategy versus more complicated embedding-based methods. While all approaches effectively capture the target style, our evaluation shows that the simpler token-based model achieves superior performance in both objective and subjective assessments of content preservation and style matching. This finding provides empirical evidences that a robust, explicit content representation (i.e., the lead sheet) is highly effective for this task, offering a practical benchmark for controllable music generation.</p>
     <h4>The following piano generations are conditioned on two arrangers: arranger 1 and arranger 2, representing different accompaniment styles.
         <br>Arranger 1 features a simpler accompaniment style with fewer variations in the notes, while arranger 2 is more complex, often involving dense arrangements and multiple notes played simultaneously.</h4> 
 
