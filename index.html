@@ -131,6 +131,12 @@
             border: 2px solid rgba(146, 154, 178, 0.5); /* 添加黑色邊框，設置邊框為 2px */
             border-radius: 15px; /* 邊框圓角化 */
         }
+        .abstract {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 70%;
+        }
 
     </style>
     
@@ -138,11 +144,14 @@
 <body>
     
     <header class="header-container">
-        <h1>Transformer-Based Unpaired Piano Accompaniment Style Transfer</h1>
+        <h1>Transformer-Based Unpaired <br>Piano Accompaniment Style Transfer</h1>
     </header>
 
-    <h4>Abstract</h4>
-        <p>style transfer for pop piano covers requires effective content-style disentanglement. To address this, we propose a framework that uses a lead sheet (namely, melody and chords) as a style-agnostic content anchor, enabling precise style manipulation without requiring paired data. We then systematically compare several Transformer-based architectures to evaluate the efficacy of a direct token-based conditioning strategy versus more complicated embedding-based methods. While all approaches effectively capture the target style, our evaluation shows that the simpler token-based model achieves superior performance in both objective and subjective assessments of content preservation and style matching. This finding provides empirical evidences that a robust, explicit content representation (i.e., the lead sheet) is highly effective for this task, offering a practical benchmark for controllable music generation.</p>
+    <h3 class="abstract"><span style="font-size: 36px;">Abstract</span></h3>
+    <h4 class="abstract"><span style="font-size: 24px;">Arranger-specific style transfer for pop piano covers requires effective content-style disentanglement. To address this, we propose a framework that uses a lead sheet (namely, melody and chords) as a style-agnostic content anchor, enabling precise style manipulation without requiring paired data. We then systematically compare several Transformer-based architectures to evaluate the efficacy of a direct token-based conditioning strategy versus more complicated embedding-based methods. While all approaches effectively capture the target style, our evaluation shows that the simpler token-based model achieves superior performance in both objective and subjective assessments of content preservation and style matching. This finding provides empirical evidences that a robust, explicit content representation (i.e., the lead sheet) is highly effective for this task, offering a practical benchmark for controllable music generation.</span></h4>
+
+    <hr style="border: 2px solid #000509; width: 70px; margin: 50px auto;">
+
     <h4>The following piano generations are conditioned on two arrangers: arranger 1 and arranger 2, representing different accompaniment styles.
         <br>Arranger 1 features a simpler accompaniment style with fewer variations in the notes, while arranger 2 is more complex, often involving dense arrangements and multiple notes played simultaneously.</h4> 
 
