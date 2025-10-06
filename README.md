@@ -1,4 +1,4 @@
-# Piano-Accompaniment-Style-Transfer
+# Transformer-Based Unpaired Piano Accompaniment Style Transfer
 This is the official implementation of Transformer-Based Unpaired Piano Accompaniment Style Transfer (APSIPA2025).
 
 ## Abstract
