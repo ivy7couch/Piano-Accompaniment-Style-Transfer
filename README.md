@@ -1,5 +1,4 @@
 # Transformer-Based Unpaired Piano Accompaniment Style Transfer
-<i>Hsin Ai and Yi-Hsuan Yang</i><br>
 This is the official implementation of Transformer-Based Unpaired Piano Accompaniment Style Transfer (APSIPA ASC’25).
 
 ## Abstract
