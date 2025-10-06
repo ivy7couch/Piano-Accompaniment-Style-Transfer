@@ -167,7 +167,8 @@
 
     <!-- <hr style="border: 2px solid #71a1ca; width: 70px; margin: 50px auto;"> -->
     <h2>Task 1: whole song style transfer</h2>
-    <h3>Model 1: lead sheet + style token</h3>
+    <h3>Model 1: STYLE-TOK + CONTENT-TOK</h3>
+    <h3>lead sheet + style token (song-level)</h3>
 
     <!-- 第一行 -->
     <div class="row">
@@ -209,7 +210,7 @@
         </div>
     </div>
 
-    <h3>Model 2: lead sheet (no chord) + style token</h3>
+    <h3>Ablation: lead sheet (no chord) + style token (song-level)</h3>
     <div class="row">
         <div class="group">
             <div class="text-container">
@@ -245,7 +246,8 @@
         </div>
     </div>
 
-    <h3>Model 3: encoder-decoder with same segments</h3>
+    <h3>Model 3: STYLE-EMB + CONTENT-TOK-</h3>
+    <h3>style reference: same segments</h3>
     <div class="row">
         <div class="group">
             <div class="text-container">
@@ -281,7 +283,7 @@
         </div>
     </div>
 
-    <h3>Model 4: encoder-decoder with neighbor segments</h3>
+    <h3><h3>style reference: adjacent segments</h3></h3>
     <div class="row">
         <div class="group">
             <div class="text-container">
@@ -317,7 +319,7 @@
         </div>
     </div>
 
-    <h3>Model 5: encoder-decoder with similar segments</h3>
+    <!-- <h3>Model 5: encoder-decoder with similar segments</h3>
     <div class="row">
         <div class="group">
             <div class="text-container">
@@ -351,7 +353,7 @@
             </audio>
             <canvas id="pianoRoll10" width="400" height="200"></canvas>
         </div>
-    </div>
+    </div> -->
 
     <hr style="border: 2px solid #71a1ca; width: 70px; margin: 50px auto;">
 
