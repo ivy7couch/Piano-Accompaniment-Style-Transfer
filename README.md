@@ -1,4 +1,4 @@
-# Transformer-Based Unpaired Piano Accompaniment Style Transfer
+# Piano Accompaniment Style Transfer
 This is the official repository of "Transformer-Based Unpaired Piano Accompaniment Style Transfer" (APSIPA ASC’25).
 
 ## Abstract
